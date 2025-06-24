@@ -31,5 +31,5 @@ jobs:
               run: |
                 echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
                 chmod 700 /home/runner/ssh_key
-                ssh -o StrictHostKeyChecking=no -i ~/ssh_key ec2-user@ec2-3-110-165-12.ap-south-1.compute.amazonaws.com -t "docker kill user_backend && docker run --name user_backend -d -p 8080:8080 ayushsah0610/todo-app-backend:${{github.sha}} "
+                ssh -o StrictHostKeyChecking=no -i ~/ssh_key ec2-user@ec2-3-110-165-12.ap-south-1.compute.amazonaws.com -t "docker remove user_backend --force && docker run --name user_backend -d -p 8080:8080 ayushsah0610/todo-app-backend:${{github.sha}} "
             
